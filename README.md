@@ -1,7 +1,7 @@
 # voltax-player-examples
 
 ### Integration Guides
-- [SPA integration best practices](SPA_INTEGRATION.md) – end-to-end tips for mounting Voltax once inside a SPA shell.
+- [SPA integration best practices](/react-spa-demo/docs/spa-integration-guide.md) – end-to-end tips for mounting Voltax once inside a SPA shell.
 
 ### Examples
 - [React SPA demo](react-spa-demo) – an app that implements every recommendation from the guide.
