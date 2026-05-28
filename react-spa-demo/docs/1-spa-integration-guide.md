@@ -24,7 +24,7 @@ Modern partners frequently mount the Voltax embed inside a client‑side router.
 </Callout>
 
 * Inject the embed snippet once and keep the embed's `<div>` with the script tag after it in the DOM for the lifetime of the shell layout.
-* Read the instantiated player via `window.voltax` instead of re‑adding `<script src="https://embed.sendtonews.com/player3/embedcode.js">` on every route change.
+* Read the instantiated player via `window.voltax` instead of re‑adding `<script src="https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed">` (`<script src="https://embed.sendtonews.com/player3/embedcode.js">` in Old Legacy) on every route change. 
 * Use the [public APIs](https://developer.voltax.io/docs/methods) (`injectPlayer`, `destroyPlayer` and event listeners) to control lifecycle instead of reloading scripts per route.
 * Optional: Call `player.destroyPlayer()` before removing the container entirely (e.g., when leaving the SPA or tearing down the host app).
 * Need a concrete implementation? Use the [React SPA demo](https://github.com/FTBpro/voltax-player-examples) in this repository for a working project that reuses these ideas.

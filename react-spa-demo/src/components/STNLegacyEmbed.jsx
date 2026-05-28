@@ -1,12 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { getPlayerByExternalID, getPlayerInstanceByExternalID, getEmbedSrc } from '../utils/playerUtils';
 
-export function STNEmbed({
+export function STNLegacyEmbed({
   externalID,
-  orgID,
-  propertyID,
+  playerKey,
   containerId,
-  contentID,
 }) {
   const containerRef = useRef(null);
   const hasLoadedScriptRef = useRef(false);
@@ -29,7 +27,7 @@ export function STNEmbed({
       script.defer = true;
       script.externalID = externalID;
       script.isPlayerControlled = true;
-      script.src = getEmbedSrc(orgID, propertyID, false);
+      script.src = `${getEmbedSrc(null, null, true)}?fk=${playerKey}`;
       container.after(script);
       hasLoadedScriptRef.current = true;
     } else if (playerRef.current) {
@@ -47,10 +45,9 @@ export function STNEmbed({
 
   return (
     <div 
-      className={`s2nPlayer`}
+      className={`s2nPlayer k-${playerKey}`}
       id={containerId}
       ref={containerRef}
-      data-content-id={contentID}
     />
   );
 }

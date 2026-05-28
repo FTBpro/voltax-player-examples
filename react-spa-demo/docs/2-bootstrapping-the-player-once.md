@@ -8,6 +8,13 @@ Place the embed markup in your root layout or any component that renders once (a
 
 Use the STN-provided `<div class="s2nPlayer">` container plus the script. This is useful when partners already rely on STN tooling.
 
+#### Modern Embed - Recommended
+```html
+<div class="s2nPlayer" data-content-id=""></div>​
+<script async defer src="https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed"></script>​
+```
+
+#### Old Legacy Embed
 ```html
 <div class="s2nPlayer k-UMLCTPqWAN"></div>
 <script async defersrc="https://embed.sendtonews.com/player3/embedcode.js?fk=UMLCTPqWAN"
@@ -16,17 +23,23 @@ Use the STN-provided `<div class="s2nPlayer">` container plus the script. This i
 
 For SPAs, create the script element imperatively so that you can assign `externalID` / `isPlayerControlled` before inserting it (React/Vue code excerpt):
 
+#### Modern Embed Script Creation - Recommended
 ```javascript
 const script = document.createElement('script');
 script.async = true;
 script.defer = true;
-script.src = 'https://embed.sendtonews.com/player3/embedcode.js?fk=...';
+script.src = 'https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed';
 script.externalID = 'homepage-hero';
 script.isPlayerControlled = true;
 container.after(script);
 ```
 
 <br />
+
+Note that if you are still using the **old legacy embed code**, the src value in the above exmaple should be changed accordingly like so - 
+```javascript
+script.src = 'https://embed.sendtonews.com/player3/embedcode.js?fk=...';
+```
 
 Do **not** recreate any of these snippets on each client-side navigation. Reloading the script repeatedly spawns extra player instances, adds network cost, and can leave detached MutationObservers on the page.
 
@@ -38,7 +51,7 @@ Single-page apps often need a stable handle to the instantiated player, even tho
 const script = document.createElement('script');
 script.async = true;
 script.defer = true;
-script.src = 'https://embed.sendtonews.com/player3/embedcode.js?fk=...';
+script.src = 'https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed';
 script.externalID = 'homepage-hero';
 script.isPlayerControlled = true;
 container.after(script);
@@ -55,13 +68,13 @@ If you need two players at the same time, give each one its own container **and 
 
 ```html
 <!-- Hero player -->
-<div id="hero-player" class="s2nPlayer k-somePlayerKey"></div>
-<script async defer src="https://embed.sendtonews.com/player3/embedcode.js?fk=somePlayerKey">
+<div id="hero-player" class="s2nPlayer"></div>
+<script async defer src="https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed">
 </script>
 
 <!-- Sidebar player -->
-<div id="sidebar-player" class="s2nPlayer k-somePlayerKey2"></div>
-<script async defer src="https://embed.sendtonews.com/player3/embedcode.js?fk=somePlayerKey2">
+<div id="sidebar-player" class="s2nPlayer"></div>
+<script async defer src="https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed">
 </script>
 
 ```

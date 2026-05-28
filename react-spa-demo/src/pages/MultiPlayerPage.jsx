@@ -1,6 +1,7 @@
-import { PLAYER_KEYS } from '../constants/playerKeys';
+import { PLAYLIST_IDS } from '../constants/contentIDs';
 import { PlayerCard } from '../components/PlayerCard';
 import { destroyPlayerByExternalID } from '../utils/playerUtils';
+import { SHARED_PLAYER } from '../constants/sharedPlayer';
 
 export function MultiPlayerPage() {
   return (
@@ -15,15 +16,19 @@ export function MultiPlayerPage() {
           title="Hero Player"
           description="Primary placement"
           externalID="demo-main-hero-player"
-          defaultPlayerKey={PLAYER_KEYS[0].id}
+          defaultContentID={PLAYLIST_IDS[0].id}
           onDestroy={() => destroyPlayerByExternalID('demo-main-hero-player')}
+          orgID={SHARED_PLAYER.orgID}
+          propertyID={SHARED_PLAYER.propertyID}
         />
         <PlayerCard
           title="Sidebar Player"
           description="Secondary placement"
           externalID="demo-sidebar-player"
-          defaultPlayerKey={PLAYER_KEYS[1].id}
+          defaultContentID={PLAYLIST_IDS[1].id}
           onDestroy={() => destroyPlayerByExternalID('demo-sidebar-player')}
+          orgID={SHARED_PLAYER.orgID}
+          propertyID={SHARED_PLAYER.propertyID}
         />
       </div>
       <div className="note">

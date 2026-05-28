@@ -1,25 +1,26 @@
 import { useEffect, useMemo, useState } from 'react';
-import { PLAYER_KEYS } from '../constants/playerKeys';
+import { PLAYLIST_IDS } from '../constants/contentIDs';
 import { replacePlayerContentByExternalID } from '../utils/playerUtils';
 import { STNEmbed } from './STNEmbed';
+import { STNLegacyEmbed } from './STNLegacyEmbed';
 import { VoltaxPlayerLifecycle } from './VoltaxPlayerLifecycle';
 
 export function PlayerCard({
+  isLegacy = false,
   title,
   description,
   externalID,
-  defaultPlayerKey,
+  defaultContentID,
   onDestroy,
   containerId,
-  playerKeys = PLAYER_KEYS,
+  playlistIDs = PLAYLIST_IDS,
+  orgID,
+  propertyID,
 }) {
-
-
-
   const destroyOnUnmount = !!onDestroy;
   const fallbackContentId = useMemo(
-    () => defaultPlayerKey || playerKeys?.[0]?.id || '',
-    [defaultPlayerKey, playerKeys],
+    () => defaultContentID || playlistIDs?.[0]?.id || '',
+    [defaultContentID, playlistIDs],
   );
   const [selectedContentId, setSelectedContentId] = useState(fallbackContentId);
 
@@ -30,7 +31,7 @@ export function PlayerCard({
   const handlePlaylistChange = event => {
     const nextContentId = event.target.value;
     setSelectedContentId(nextContentId);
-    replacePlayerContentByExternalID(externalID, { playerKey: nextContentId });
+    replacePlayerContentByExternalID(externalID, nextContentId);
   };
 
   return (
@@ -39,21 +40,32 @@ export function PlayerCard({
         <h3>{title}</h3>
         <p>{description}</p>
       </header>
-      <STNEmbed
-        externalID={externalID}
-        containerId={containerId}
-        playerKey={defaultPlayerKey}
-        destroyOnUnmount={destroyOnUnmount}
-      />
+      {isLegacy ? (
+        <STNLegacyEmbed
+          externalID={externalID}
+          containerId={containerId}
+          playerKey={defaultContentID}
+          destroyOnUnmount={destroyOnUnmount}
+        />
+      ) : (
+        <STNEmbed
+          externalID={externalID}
+          containerId={containerId}
+          contentID={defaultContentID}
+          orgID={orgID}
+          propertyID={propertyID}
+          destroyOnUnmount={destroyOnUnmount}
+        />
+      )}
       <VoltaxPlayerLifecycle externalID={externalID} containerId={containerId} destroyOnUnmount={destroyOnUnmount} />
-      {(playerKeys?.length || onDestroy) && (
+      {(playlistIDs?.length || onDestroy) && (
         <div className="controls">
-          {playerKeys?.length ? (
+          {playlistIDs?.length ? (
             <label>
-              Player Key
+              Playlist ID
               <div className="description">switch between different playlists</div>
               <select value={selectedContentId} onChange={handlePlaylistChange}>
-                {playerKeys.map(({ id, label }) => (
+                {playlistIDs.map(({ id, label }) => (
                   <option key={id} value={id}>
                     {label} ({id})
                   </option>
