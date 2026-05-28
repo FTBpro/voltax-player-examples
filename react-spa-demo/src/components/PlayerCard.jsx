@@ -31,7 +31,8 @@ export function PlayerCard({
   const handlePlaylistChange = event => {
     const nextContentId = event.target.value;
     setSelectedContentId(nextContentId);
-    replacePlayerContentByExternalID(externalID, nextContentId);
+    const options = isLegacy ? { playerKey: nextContentId } : nextContentId;
+    replacePlayerContentByExternalID(externalID, options);
   };
 
   return (
