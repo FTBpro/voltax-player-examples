@@ -40,7 +40,7 @@ export const replacePlayerContentByExternalID = (externalID, options) => {
 
   const maybePromise = player.replacePlayerContent?.(options);
   const reinject = () => {
-    const target = document.querySelector(`#${containerId}`);
+    const target = document.querySelector(`#${externalID}`);
     if (target) {
       player.injectPlayer?.(target);
     }
