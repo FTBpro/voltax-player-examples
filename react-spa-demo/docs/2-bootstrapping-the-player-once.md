@@ -5,8 +5,7 @@
 Place the embed markup in your root layout or any component that renders once (app shell, document template, etc.). **Important:** The `<script>` tag must sit inside each player container for the embed to work. A single global script cannot attach to multiple containers with the current embed contract.
 
 #### How to Mount the Embed / Inject
-
-Use the STN-provided `<div class="s2nPlayer">` container plus the script. This is useful when partners already rely on STN tooling. 
+Use the STN-provided `<div class="s2nPlayer">` container plus the script. 
 
 **Embed vs Inject:**
 * **Embed:** The embed is used to embed a specific content on the page (playlist, video etc.).
