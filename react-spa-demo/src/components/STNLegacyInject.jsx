@@ -1,12 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { getPlayerByExternalID, getPlayerInstanceByExternalID, getEmbedSrc } from '../utils/playerUtils';
+import { getPlayerByExternalID, getPlayerInstanceByExternalID } from '../utils/playerUtils';
 
-export function STNEmbed({
+export function STNLegacyInject({
   externalID,
-  orgID,
-  propertyID,
   containerId,
-  contentID,
 }) {
   const containerRef = useRef(null);
   const hasLoadedScriptRef = useRef(false);
@@ -29,7 +26,7 @@ export function STNEmbed({
       script.defer = true;
       script.externalID = externalID;
       script.isPlayerControlled = true;
-      script.src = getEmbedSrc(orgID, propertyID, false);
+      script.src = 'https://players.voltaxservices.io/players/demo-organization/demo_property/code';
       container.after(script);
       hasLoadedScriptRef.current = true;
     } else if (playerRef.current) {
@@ -44,15 +41,11 @@ export function STNEmbed({
 
   }, [externalID]);
 
-
   return (
     <div 
       className={`s2nPlayer`}
       id={containerId}
       ref={containerRef}
-      data-content-id={contentID}
     />
   );
 }
-
-

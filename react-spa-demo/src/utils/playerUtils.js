@@ -40,7 +40,7 @@ export const replacePlayerContentByExternalID = (externalID, options) => {
 
   const maybePromise = player.replacePlayerContent?.(options);
   const reinject = () => {
-    const target = document.querySelector(`#${containerId}`);
+    const target = document.querySelector(`#${externalID}`);
     if (target) {
       player.injectPlayer?.(target);
     }
@@ -53,4 +53,12 @@ export const replacePlayerContentByExternalID = (externalID, options) => {
   } else {
     reinject();
   }
+};
+
+
+export const S2N_OLD_LEGACY_EMBED_SRC = 'https://embed.sendtonews.com/player3/embedcode.js';
+export const S2N_MODERN_EMBED_SRC = 'https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed';
+
+export const getEmbedSrc = (orgID, propertyID, isLegacy = false) => {
+  return isLegacy ? S2N_OLD_LEGACY_EMBED_SRC : S2N_MODERN_EMBED_SRC.replace('<orgID>', orgID).replace('<propertyID>', propertyID);
 };

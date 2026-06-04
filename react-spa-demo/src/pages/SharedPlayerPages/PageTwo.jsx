@@ -15,8 +15,10 @@ export const PageTwo = () => {
           title={`Shared Hero Player on Page Two in container with id '${SHARED_PLAYER.secondaryContainerId}'`}
           description="This player was embedded using the embed code (div with script tag after it) and reuses the player from Page One injected into a different container ."
           externalID={SHARED_PLAYER.externalID}
-          defaultPlayerKey={SHARED_PLAYER.defaultContentId}
+          defaultContentID={SHARED_PLAYER.defaultContentId}
           containerId={SHARED_PLAYER.secondaryContainerId}
+          orgID={SHARED_PLAYER.orgID}
+          propertyID={SHARED_PLAYER.propertyID}
         />
       </div>
     </>

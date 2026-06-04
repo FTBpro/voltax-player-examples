@@ -2,6 +2,8 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import { MultiPlayerPage } from './pages/MultiPlayerPage';
 import { PageOne } from './pages/SharedPlayerPages/PageOne';
 import { PageTwo } from './pages/SharedPlayerPages/PageTwo';
+import { LegacyEmbedPage } from './pages/LegacyEmbedPage';
+import { LegacyInjectPage } from './pages/LegacyInjectPage';
 
 const navLinkClass = ({ isActive }) => (isActive ? 'active' : undefined);
 
@@ -26,6 +28,16 @@ export default function App() {
             <h4>Multiple players page</h4>
             </NavLink>
           </div>
+          <div className="nav-links">
+            <NavLink to="/legacy" className={navLinkClass}>
+            <h4>Old Legacy Embed</h4>
+            </NavLink>
+          </div>
+          <div className="nav-links">
+            <NavLink to="/legacy-inject" className={navLinkClass}>
+            <h4>Old Legacy Inject</h4>
+            </NavLink>
+          </div>
         </nav>
       </aside>
       <main className="main-panel">
@@ -34,6 +46,8 @@ export default function App() {
           <Route path="/shared/page-one" element={<PageOne />} />
           <Route path="/shared/page-two" element={<PageTwo />} />
           <Route path="/multi" element={<MultiPlayerPage />} />
+          <Route path="/legacy" element={<LegacyEmbedPage />} />
+          <Route path="/legacy-inject" element={<LegacyInjectPage />} />
         </Routes>
       </main>
     </div>

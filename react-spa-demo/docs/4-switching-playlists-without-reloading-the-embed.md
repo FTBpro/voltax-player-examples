@@ -3,6 +3,13 @@
 Once you have a player instance, you can change its playlist/content on the fly. The runtime exposes [`player.replacePlayerContent({ playerKey })`](https://developer.voltax.io/docs/methods#vplayerreplaceplayercontentoptions--playerkey-string--void), which is what the React demo uses for the playlist selector controls. Example:
 
 ```js
+const playelistID = '01kqvd6v6rjrkvdhyq';
+const [player] = window.voltax.getPlayersByExternalID('shared-hero-player') || [];
+player?.replacePlayerContent(playelistID);
+```
+
+####For old legacy embeds, using playerKey
+```js
 const [player] = window.voltax.getPlayersByExternalID('shared-hero-player') || [];
 player?.replacePlayerContent(
   {
@@ -10,6 +17,7 @@ player?.replacePlayerContent(
   }
 );
 ```
+
 
 You can call this from route hooks or UI event handlers whenever the SPA needs to switch content without reinstantiating the embed.
 
