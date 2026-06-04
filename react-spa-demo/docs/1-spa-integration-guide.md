@@ -14,7 +14,7 @@ Modern partners frequently mount the Voltax embed inside a client‑side router.
 ## TL;DR for a Simple Scenario - Single Player Per Page
 
 <Callout icon="📘" theme="info">
-  Note: The following is the most recommended method to use the player.\
+  Note: The following is the most recommended method to use the player.
   Keeping it in the dom for the entire lifetime of the app and reusing the instance will:
 
   * Improve **performance** of the app -
