@@ -14,7 +14,7 @@ Use the STN-provided `<div class="s2nPlayer">` container plus the script. This i
 
 #### Modern Embed - Recommended
 ```html
-<div class="s2nPlayer" data-content-id=""></div>​
+<div class="s2nPlayer" data-content-id="YOUR_CONTENT_ID"></div>​
 <script async defer src="https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed"></script>​
 ```
 
@@ -42,6 +42,10 @@ script.defer = true;
 script.src = 'https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed';
 script.externalID = 'homepage-hero';
 script.isPlayerControlled = true;
+
+container.dataset.contentId = "YOUR_CONTENT_ID";
+ // or directly in the html tag like so 
+ // <div class="s2nPlayer" data-content-id="YOUR_CONTENT_ID">
 container.after(script);
 ```
 
@@ -66,6 +70,10 @@ script.defer = true;
 script.src = 'https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed';
 script.externalID = 'homepage-hero';
 script.isPlayerControlled = true;
+
+container.dataset.contentId = "YOUR_CONTENT_ID";
+ // or directly in the html tag like so 
+ // <div class="s2nPlayer" data-content-id="YOUR_CONTENT_ID">
 container.after(script);
 ```
 
@@ -80,13 +88,13 @@ If you need two players at the same time, give each one its own container **and 
 
 ```html
 <!-- Hero player -->
-<div id="hero-player" class="s2nPlayer"></div>
+<div id="hero-player" class="s2nPlayer" data-content-id="YOUR_CONTENT_ID"></div>
 <!-- Use /embed for Embed, or /code for Inject -->
 <script async defer src="https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed">
 </script>
 
 <!-- Sidebar player -->
-<div id="sidebar-player" class="s2nPlayer"></div>
+<div id="sidebar-player" class="s2nPlayer" data-content-id="YOUR_OTHER_CONTENT_ID">></div>
 <script async defer src="https://players.voltaxservices.io/players/<orgID>/<propertyID>/embed">
 </script>
 
